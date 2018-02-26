@@ -13,84 +13,52 @@ data Contact gdpr
 data PossiblyEU
 data NonEU
 
+possiblyEUContact
+  :: Integer -- ^ ID
+  -> String  -- ^ Name
+  -> String  -- ^ Email
+  -> Contact PossiblyEU
+possiblyEUContact id' name email =
+  Contact
+    { contactId = id'
+    , contactName = name
+    , contactEmail = email
+    }
+
+nonEUContact
+  :: Integer -- ^ ID
+  -> String  -- ^ Name
+  -> String  -- ^ Email
+  -> Contact NonEU
+nonEUContact id' name email =
+  Contact
+    { contactId = id'
+    , contactName = name
+    , contactEmail = email
+    }
+
 getContacts :: IO [Contact PossiblyEU]
 getContacts =
   pure
-    [ Contact
-        { contactId = 1
-        , contactName = "John Oldman"
-        , contactEmail = "lastmanstanding@example.com"
-        }
-    , Contact
-        { contactId = 2
-        , contactName = "Florence Nightingale"
-        , contactEmail = "florence@example.edu"
-        }
-    , Contact
-        { contactId = 3
-        , contactName = "Leonardo da Vinci"
-        , contactEmail = "leo.io@example.com"
-        }
-    , Contact
-        { contactId = 4
-        , contactName = "George Orwell"
-        , contactEmail = "1984@example.com"
-        }
-    , Contact
-        { contactId = 5
-        , contactName = "Marie Curie"
-        , contactEmail = "nofearcurie@example.com"
-        }
-    , Contact
-        { contactId = 6
-        , contactName = "René Descartes"
-        , contactEmail = "cogitoergosum@example.com"
-        }
-    , Contact
-        { contactId = 7
-        , contactName = "Alonzo Church"
-        , contactEmail = "lambdalambdalambda@example.edu"
-        }
-    , Contact
-        { contactId = 8
-        , contactName = "Donald Trump"
-        , contactEmail = "lol@example.org"
-        }
-    , Contact
-        { contactId = 9
-        , contactName = "Dexter Morgan"
-        , contactEmail = "iamthepolice@example.org"
-        }
-    , Contact
-        { contactId = 10
-        , contactName = "Cathy Newman"
-        , contactEmail = "soyouresaying@example.com"
-        }
+    [ possiblyEUContact 1  "John Oldman"          "lastmanstanding@example.com"
+    , possiblyEUContact 2  "Florence Nightingale" "florence@example.edu"
+    , possiblyEUContact 3  "Leonardo da Vinci"    "leo.io@example.com"
+    , possiblyEUContact 4  "George Orwell"        "1984@example.com"
+    , possiblyEUContact 5  "Marie Curie"          "nofearcurie@example.com"
+    , possiblyEUContact 6  "René Descartes"       "cogitoergosum@example.com"
+    , possiblyEUContact 7  "Alonzo Church"        "lambdalambdalambda@example.edu"
+    , possiblyEUContact 8  "Donald Trump"         "lol@example.org"
+    , possiblyEUContact 9  "Dexter Morgan"        "iamthepolice@example.org"
+    , possiblyEUContact 10 "Cathy Newman"         "soyouresaying@example.com"
     ]
 
 getNonEUContacts :: IO [Contact NonEU]
 getNonEUContacts =
   pure
-    [ Contact
-        { contactId = 1
-        , contactName = "John Oldman"
-        , contactEmail = "lastmanstanding@example.com"
-        }
-    , Contact
-        { contactId = 7
-        , contactName = "Alonzo Church"
-        , contactEmail = "lambdalambdalambda@example.edu"
-        }
-    , Contact
-        { contactId = 8
-        , contactName = "Donald Trump"
-        , contactEmail = "lol@example.org"
-        }
-    , Contact
-        { contactId = 9
-        , contactName = "Dexter Morgan"
-        , contactEmail = "iamthepolice@example.org"
-        }
+    [ nonEUContact 1 "John Oldman"   "lastmanstanding@example.com"
+    , nonEUContact 7 "Alonzo Church" "lambdalambdalambda@example.edu"
+    , nonEUContact 8 "Donald Trump"  "lol@example.org"
+    , nonEUContact 9 "Dexter Morgan" "iamthepolice@example.org"
     ]
 
 data Email
